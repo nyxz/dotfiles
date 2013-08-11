@@ -1,0 +1,5 @@
+echo Fixing screen brightness...
+sudo sed "s/\(GRUB_CMDLINE_LINUX=\)\"\"/\1\"acpi_­osi=Linux acpi_backlight=vendor\"/" /etc/default/grub -i
+
+sudo update-grub
+echo Fix finished. Please reboot.

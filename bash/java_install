@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [ $# -gt 1 ]
+then
+    echo "Invalid number of parameters."
+    exit -1
+elif [ $# -eq 1 ]
+then
+    ARCHIVE=$1
+else
+    read -p "Enter path to your Oracle JKD installation file (.bin): " ARCHIVE
+fi
+
+if [ ! -f $ARCHIVE ]; then
+    echo "File not found: $ARCHIVE"
+    exit -1
+fi
+
+read -p "Enter Java version (like 1.6.0_45): " JAVA_VERSION
+
+DIR=$(echo $ARCHIVE | sed 's/[^\/]*$//')
+CUR_DIR=$(pwd)
+FILE=$(basename $ARCHIVE)
+
+echo Installing JKD...
+chmod +x $ARCHIVE
+sh $ARCHIVE
+sudo mkdir /opt/java
+sudo cp -r $(echo "$CUR_DIR/jdk$JAVA_VERSION") /opt/java
+
+echo Setting alternatives...
+sudo update-alternatives --install "/usr/bin/java" "java" $(echo "/opt/java/jdk$JAVA_VERSION/bin/java") 20000
+sudo update-alternatives --set java $(echo "/opt/java/jdk$JAVA_VERSION/bin/java")
+
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" $(echo "/opt/java/jdk$JAVA_VERSION/jre/bin/javaws") 20000
+sudo update-alternatives --set javaws $(echo "/opt/java/jdk$JAVA_VERSION/jre/bin/javaws")
+
+sudo update-alternatives --install "/usr/lib/mozilla/plugins/libjavaplugin.so" "mozilla-javaplugin.so" $(echo "/opt/java/jdk$JAVA_VERSION/jre/lib/amd64/libnpjp2.so") 20000
+sudo update-alternatives --set mozilla-javaplugin.so $(echo "/opt/java/jdk$JAVA_VERSION/jre/lib/amd64/libnpjp2.so")
+
+sudo update-alternatives --install "/usr/bin/javac" "javac" $(echo "/opt/java/jdk$JAVA_VERSION/bin/javac") 20000
+sudo update-alternatives --set javac $(echo "/opt/java/jdk$JAVA_VERSION/bin/javac")
+
+sudo update-alternatives --install "/usr/bin/jar" "jar" $(echo "/opt/java/jdk$JAVA_VERSION/bin/jar") 20000
+sudo update-alternatives --set jar $(echo "/opt/java/jdk$JAVA_VERSION/bin/jar")
+
+
+echo Test the Mozilla Java plugin by typing 'about:plugins' in the nav-bar
