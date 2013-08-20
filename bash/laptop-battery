@@ -3,7 +3,7 @@
 echo "You should add 'noatime,nodiratime' manually to your FSs in /etc/fstab"
 echo ''
 echo 'Backing up /etc/fstab...'
-sudo cp /etc/fstab{,.backup}
+cp /etc/fstab{,.backup}
 
 echo 'Editting fstab...'
 
@@ -18,32 +18,30 @@ echo 'tmpfs   /var/log        tmpfs   defaults,noatime,size=512M,mode=1777    0 
 
 echo ''
 echo 'Adjusting swappiness. You must have root privileges.'
-su -l
 echo 0 > /proc/sys/vm/swappiness
-logout
 echo 'Swappiness changed to 0 (Do not use swap until the RAM is full)'
 
 echo ''
 echo 'Installing PowerTOP...'
-sudo apt-get install powertop
+apt-get install powertop
 echo 'You may need to run the "powertop --calibrate" in order to get your PowerTOP showing WATs usage.'
 
 echo ''
 echo ''
 echo 'Disabling the eth0 (ethernet adapter). Add this to startup configuration.'
-sudo ifconfig eth0 down
+ifconfig eth0 down
 
 echo ''
 echo ''
 echo 'Installing laptop-mode-tools...'
-sudo apt-get install laptop-mode-tools
+apt-get install laptop-mode-tools
 echo 'laptop-mode-tools is installed. You can configure it in the /etc/laptop-mode/laptop-mode.conf'
 echo 'If the following value is a zero, run the "sudo update-rc.d laptop-mode defaults" command: '
 cat /proc/sys/vm/laptop_mode
 
 echo ''
 echo 'Installing indicator-cpufreq...'
-sudo apt-get install indicator-cpufreq
+apt-get install indicator-cpufreq
 indicator-cpufreq&
 echo 'indicator-cpufreq started.'
 echo ''
@@ -55,10 +53,10 @@ cat /sys/devices/virtual/thermal/thermal_zone0/temp
 
 echo ''
 echo 'Installing thinkfan...'
-sudo apt-get install thinkfan
+apt-get install thinkfan
 echo 'Thinkfan installed. You can check its configuration in /etc/thinkfan.conf. Do not forget to adjust your sensor in the configuration file to /sys/devices/virtual/thermal/thermal_zone0/temp'
 
 echo ''
 echo ''
-echo 'Remember to disable your discrete graphics card. Add "" to your /etc/rc.local file.'
+# echo 'Remember to disable your discrete graphics card. Add "" to your /etc/rc.local file.'
 echo 'Remember to disable your eth0 on startup. Add "ifconfig eth0 down" to your /etc/rc.local file.'
