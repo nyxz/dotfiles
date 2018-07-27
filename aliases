@@ -1,10 +1,10 @@
 #===========================================================
 # Navigation                                               #
 #===========================================================
-MAJIO_HOME=/home/nyxz/dev/workspaces/java/majio
+MAJIO_HOME=/home/nyxz/dev/workspace/java/majio
 alias goto_majio_workspace="cd $MAJIO_HOME && git status"
-alias goto_idcamp_backend="cd /home/nyxz/dev/workspaces/futuristlabs/idcamp-backend && git status"
-alias goto_idcamp_web="cd /home/nyxz/dev/workspaces/futuristlabs/idcamp-web && git status"
+alias goto_idcamp_backend="cd /home/nyxz/dev/workspace/futurist-labs/idcamp/idcamp-backend && git status"
+alias goto_idcamp_web="cd /home/nyxz/dev/workspace/futurist-labs/idcamp/idcamp-web && git status"
 
 #===========================================================
 # development helpers                                      #
