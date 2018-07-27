@@ -1,0 +1,5 @@
+
+if [ -f ~/dotfiles/env.local ]; then
+    . ~/dotfiles/env.local
+fi
+

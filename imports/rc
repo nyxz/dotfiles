@@ -1,0 +1,17 @@
+
+if [ -f ~/dotfiles/aliases ]; then
+    . ~/dotfiles/aliases
+fi
+
+if [ -f ~/dotfiles/functions ]; then
+    . ~/dotfiles/functions
+fi
+
+if [ -f ~/dotfiles/majio-functions ]; then
+    . ~/dotfiles/majio-functions
+fi
+
+if [ -f ~/dotfiles/idcamp-functions ]; then
+    . ~/dotfiles/idcamp-functions
+fi
+
