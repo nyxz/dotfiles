@@ -35,6 +35,9 @@ alias tomcat_debug='sh /opt/tomcat/bin/catalina.sh jpda start'
 alias tomcat_stop='sh /opt/tomcat/bin/catalina.sh stop'
 alias tomcat_show_logs='tail -f -n 100 /opt/tomcat/logs/catalina.out'
 
+# PgAdmin
+alias pgadmin4="mkdir -p ~/.pgadmin4 && docker run -d --rm --network host -v ~/.pgadmin4:/pgadmin thajeztah/pgadmin4"
+
 #===========================================================
 # General purpose aliases                                  #
 #===========================================================
