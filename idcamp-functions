@@ -60,12 +60,16 @@ function idcamp_post_pub {
 }
 
 # Make POST requests that require session
-function idcamp_post {
+function idcamp_post_raw {
   local url="$URL_IDCAMP_API$1";
   local json="$2";
   idcamp_create_session
   printf "Querying $url ...\n"
-  curl -X POST -d"$json" -H "Content-Type: application/json" -H "X-Auth-Token: $IDCAMP_SESSION" "$url" | python -m json.tool
+  curl -X POST -d"$json" -H "Content-Type: application/json" -H "X-Auth-Token: $IDCAMP_SESSION" "$url"
+}
+
+function idcamp_post {
+  idcamp_post_raw $1 $2 | python -m json.tool
 }
 
 function idcamp_delete {
