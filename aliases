@@ -1,10 +1,15 @@
 #===========================================================
 # Navigation                                               #
 #===========================================================
+function goto {
+  cd $1 && git status
+}
 MAJIO_HOME=/home/nyxz/dev/workspace/java/majio
-alias goto_majio_workspace="cd $MAJIO_HOME && git status"
-alias goto_idcamp_backend="cd /home/nyxz/dev/workspace/futurist-labs/idcamp/idcamp-backend && git status"
-alias goto_idcamp_web="cd /home/nyxz/dev/workspace/futurist-labs/idcamp/idcamp-web && git status"
+FLABS_HOME=/home/nyxz/dev/workspace/futurist-labs
+alias goto_majio_workspace="goto $MAJIO_HOME"
+alias goto_idcamp_backend="goto $FLABS_HOME/idcamp/idcamp-backend"
+alias goto_idcamp_web="goto $FLABS_HOME/idcamp/idcamp-web"
+alias goto_popboardz_cms="goto $FLABS_HOME/popboardz/popboardz-cms"
 
 #===========================================================
 # development helpers                                      #
