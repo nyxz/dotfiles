@@ -11,7 +11,7 @@ if [ -f ~/dotfiles/majio-functions ]; then
     . ~/dotfiles/majio-functions
 fi
 
-if [ -f ~/dotfiles/idcamp-functions ]; then
-    . ~/dotfiles/idcamp-functions
+if [ -f ~/dotfiles/flabs-functions ]; then
+    . ~/dotfiles/flabs-functions
 fi
 
