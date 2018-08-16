@@ -78,7 +78,9 @@ function flabs_get {
   if [[ -z "$FLABS_SESSION" ]]; then
     return 1
   fi
-  printf "Querying $url ...\n"
+  printf "\n=================================================\n" >&2
+  printf "\ncurl -H \"Content-Type: application/json\" -H \"X-Auth-Token: $FLABS_SESSION\" \"$url\"\n" >&2
+  printf "\n=================================================\n" >&2
   curl -H "Content-Type: application/json" -H "X-Auth-Token: $FLABS_SESSION" "$url" | jq
 }
 
@@ -86,6 +88,9 @@ function flabs_get {
 function flabs_post_pub {
   local url="$FLABS_API_URL$1";
   local json="$2";
+  printf "\n=================================================\n" >&2
+  printf "\ncurl -X POST -d\"$json\" -H \"Content-Type: application/json\" \"$url\"\n" >&2
+  printf "\n=================================================\n" >&2
   curl -X POST -d"$json" -H "Content-Type: application/json" "$url"
 }
 
@@ -97,7 +102,9 @@ function flabs_post_raw {
   if [[ -z "$FLABS_SESSION" ]]; then
     return 1
   fi
-  printf "Querying $url ...\n"
+  printf "\n=================================================\n" >&2
+  printf "\ncurl -X POST -d\"$json\" -H \"Content-Type: application/json\" -H \"X-Auth-Token: $FLABS_SESSION\" \"$url\"\n" >&2
+  printf "\n=================================================\n" >&2
   curl -X POST -d"$json" -H "Content-Type: application/json" -H "X-Auth-Token: $FLABS_SESSION" "$url"
 }
 
