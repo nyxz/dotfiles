@@ -60,7 +60,7 @@ function flabs_create_session {
   if [[ -z "$FLABS_SESSION" ]]; then
     printf "Creating session LarcTest on $FLABS_API_URL\n"
     local session_resp=$( flabs_post_pub /sessions "{\"username\":\"$FLABS_USER\",\"password\":\"$FLABS_PASS\"}" )
-    FLABS_SESSION=$( echo "$session_resp" | sed -nE 's/.*"sessionId"\s*:\s*"(.*)",/\1/p' )
+    FLABS_SESSION=$( echo "$session_resp" | jq '.sessionId' --raw-output )
     if [[ -z "$FLABS_SESSION" ]]; then
       printf "Couldn't create session\n"
       return 1
@@ -75,15 +75,18 @@ function flabs_create_session {
 function flabs_get {
   local url="$FLABS_API_URL$1";
   flabs_create_session
+  if [[ -z "$FLABS_SESSION" ]]; then
+    return 1
+  fi
   printf "Querying $url ...\n"
-  curl -H "Content-Type: application/json" -H "X-Auth-Token: $FLABS_SESSION" "$url" | python -m json.tool
+  curl -H "Content-Type: application/json" -H "X-Auth-Token: $FLABS_SESSION" "$url" | jq
 }
 
 # Make public POST calls - no need of session
 function flabs_post_pub {
   local url="$FLABS_API_URL$1";
   local json="$2";
-  curl -v -X POST -d"$json" -H "Content-Type: application/json" "$url"
+  curl -X POST -d"$json" -H "Content-Type: application/json" "$url"
 }
 
 # Make POST requests that require session
@@ -91,12 +94,15 @@ function flabs_post_raw {
   local url="$FLABS_API_URL$1";
   local json="$2";
   flabs_create_session
+  if [[ -z "$FLABS_SESSION" ]]; then
+    return 1
+  fi
   printf "Querying $url ...\n"
   curl -X POST -d"$json" -H "Content-Type: application/json" -H "X-Auth-Token: $FLABS_SESSION" "$url"
 }
 
 function flabs_post {
-  flabs_post_raw $1 $2 | python -m json.tool
+  flabs_post_raw $1 $2 | jq
 }
 
 function flabs_delete {
