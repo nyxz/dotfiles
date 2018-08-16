@@ -23,12 +23,13 @@ function flabs_activate {
   FLABS_PASS=$(eval echo "\$${app_name}_PASS")
   if [[ -z "$FLABS_USER" ]]; then
     printf "User not found for application $app_name\n"
-    exit 1
+    return 1
   fi
   if [[ -z "$FLABS_PASS" ]]; then
     printf "Password not found for application $app_name\n"
-    exit 1
+    return 1
   fi
+  printf "Credentials activated successfully.\n"
 }
 
 # Create session if currently there is currently not existing one
