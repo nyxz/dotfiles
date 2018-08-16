@@ -1,17 +1,17 @@
 
-if [ -f ~/dotfiles/aliases ]; then
-    . ~/dotfiles/aliases
+if [ -f ~/dotfiles/aliases.sh ]; then
+    . ~/dotfiles/aliases.sh
 fi
 
-if [ -f ~/dotfiles/functions ]; then
-    . ~/dotfiles/functions
+if [ -f ~/dotfiles/functions.sh ]; then
+    . ~/dotfiles/functions.sh
 fi
 
-if [ -f ~/dotfiles/majio-functions ]; then
-    . ~/dotfiles/majio-functions
+if [ -f ~/dotfiles/majio-functions.sh ]; then
+    . ~/dotfiles/majio-functions.sh
 fi
 
-if [ -f ~/dotfiles/flabs-functions ]; then
-    . ~/dotfiles/flabs-functions
+if [ -f ~/dotfiles/flabs-functions.sh ]; then
+    . ~/dotfiles/flabs-functions.sh
 fi
 
