@@ -60,7 +60,11 @@ function flabs_create_session {
   if [[ -z "$FLABS_SESSION" ]]; then
     printf "Creating session LarcTest on $FLABS_API_URL\n"
     local session_resp=$( flabs_post_pub /sessions "{\"username\":\"$FLABS_USER\",\"password\":\"$FLABS_PASS\"}" )
-    FLABS_SESSION=$( echo "$session_resp" | sed -nE 's/.*"sessionId":"(.*)","userId.*/\1/p' )
+    FLABS_SESSION=$( echo "$session_resp" | sed -nE 's/.*"sessionId"\s*:\s*"(.*)",/\1/p' )
+    if [[ -z "$FLABS_SESSION" ]]; then
+      printf "Couldn't create session\n"
+      return 1
+    fi
     printf "Session created $FLABS_SESSION\n"
   else
     printf "Working with currently established session $FLABS_SESSION\n"
@@ -77,9 +81,9 @@ function flabs_get {
 
 # Make public POST calls - no need of session
 function flabs_post_pub {
-  local url="$1";
+  local url="$FLABS_API_URL$1";
   local json="$2";
-  curl -X POST -d"$json" -H "Content-Type: application/json" "$FLABS_API_URL/$url"
+  curl -v -X POST -d"$json" -H "Content-Type: application/json" "$url"
 }
 
 # Make POST requests that require session
