@@ -79,7 +79,7 @@ function flabs_get {
     return 1
   fi
   printf "\n=================================================\n" >&2
-  printf "\ncurl -H \"Content-Type: application/json\" -H \"X-Auth-Token: $FLABS_SESSION\" \"$url\"\n" >&2
+  printf "\ncurl -H 'Content-Type: application/json' -H 'X-Auth-Token: $FLABS_SESSION' $url\n" >&2
   printf "\n=================================================\n" >&2
   curl -H "Content-Type: application/json" -H "X-Auth-Token: $FLABS_SESSION" "$url" | jq
 }
@@ -89,9 +89,17 @@ function flabs_post_pub {
   local url="$FLABS_API_URL$1";
   local json="$2";
   printf "\n=================================================\n" >&2
-  printf "\ncurl -X POST -d\"$json\" -H \"Content-Type: application/json\" \"$url\"\n" >&2
+  printf "\ncurl -X POST -d '$json' -H 'Content-Type: application/json' $url\n" >&2
   printf "\n=================================================\n" >&2
   curl -X POST -d"$json" -H "Content-Type: application/json" "$url"
+}
+
+# Make public POST calls with JSON file content as body - no need of session
+function flabs_post_json_file_pub {
+  local raw_url="$1"
+  local json_file="$2";
+  local json=$( tr -d '[:space:]' < "$json_file" )
+  flabs_post_pub "$raw_url" "$json"
 }
 
 # Make POST requests that require session
