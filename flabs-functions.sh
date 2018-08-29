@@ -111,7 +111,7 @@ function flabs_post_raw {
     return 1
   fi
   printf "\n=================================================\n" >&2
-  printf "\ncurl -X POST -d\"$json\" -H \"Content-Type: application/json\" -H \"X-Auth-Token: $FLABS_SESSION\" \"$url\"\n" >&2
+  printf "\ncurl -X POST -d '$json' -H \"Content-Type: application/json\" -H \"X-Auth-Token: $FLABS_SESSION\" \"$url\"\n" >&2
   printf "\n=================================================\n" >&2
   curl -X POST -d"$json" -H "Content-Type: application/json" -H "X-Auth-Token: $FLABS_SESSION" "$url"
 }
