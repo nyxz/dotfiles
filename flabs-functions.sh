@@ -122,6 +122,10 @@ function flabs_post {
 
 function flabs_delete {
   local url="$FLABS_API_URL$1"
+  flabs_create_session
+  printf "\n=================================================\n" >&2
+  printf "\ncurl -X DELETE -H \"X-Auth-Token: $FLABS_SESSION\" \"$url\"\n" >&2
+  printf "\n=================================================\n" >&2
   curl -X DELETE -H "X-Auth-Token: $FLABS_SESSION" "$url"
 }
 
