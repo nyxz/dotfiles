@@ -32,10 +32,10 @@ alias majio_pg_terminate_majio_connections='psql -Umajio -dmajio -f ~/dev/script
 
 alias majio_generate_migration_scripts='sh /home/nyxz/dev/workspaces/java/majio/scripts/shell/migration/create-migration-scripts.sh --repo /home/nyxz/dev/workspaces/java/majio --ann-repo /home/nyxz/dev/workspaces/java/majio-manual-annotation --config /home/nyxz/dev/config/majio --ssh-key /home/nyxz/.ssh/id_rsa_server_access'
 
-alias majio_dump_download_slothworks_today="aws s3 cp s3://backup.sloth.works --include \"*`date --iso-8601`*.sql\" ."
-alias majio_dump_download_majio_today="gsutil cp \"gs://majio-archive/backups/sql/maj.io/*`date --iso-8601`*\" ."
-#alias majio_dump_download_slothworks_today="gsutil cp \"gs://majio-archive/backups/sql/sloth.works/*`date --iso-8601`*\" ."
-#alias majio_dump_download_majio_today="gsutil cp \"gs://majio-archive/backups/sql/maj.io/*`date --iso-8601`*\" ."
+alias majio_dump_download_slothworks_today="aws s3 cp s3://backup.sloth.works --include \"*`date +%Y-%m-%d`*.sql\" ."
+alias majio_dump_download_majio_today="gsutil cp \"gs://majio-archive/backups/sql/maj.io/*`date +%Y-%m-%d`*\" ."
+#alias majio_dump_download_slothworks_today="gsutil cp \"gs://majio-archive/backups/sql/sloth.works/*`date +%Y-%m-%d`*\" ."
+#alias majio_dump_download_majio_today="gsutil cp \"gs://majio-archive/backups/sql/maj.io/*`date +%Y-%m-%d`*\" ."
 
 # Tomcat
 alias tomcat_start='sh /opt/tomcat/bin/catalina.sh start'
