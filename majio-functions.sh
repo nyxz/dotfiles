@@ -30,7 +30,7 @@ function majio_uploadUrlJob {
   # Usage: uploadJob pesho@maj.io http://path/to/document.{html, doc, etc.}
   KEY_SECRET=$(apiKeyOf $1)
   URL=$2
-  EXPIRATION_DATE=$(date +%Y-%m-%dT%H:%M:%S.666Z --date +2days)
+  EXPIRATION_DATE=$(date -v +2d +%Y-%m-%dT%H:%M:%S.666Z)
   curl -v --digest --user $KEY_SECRET --header 'Accept: application/json' --data "url=$URL&EXPIRY_INSTANT=$EXPIRATION_DATE" $API_URL/document/uploadUrlJob
 }
 
