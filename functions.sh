@@ -30,3 +30,7 @@ function backup {
   return 0
 }
 
+function goto {
+  cd $1 && git status
+}
+

@@ -1,17 +1,14 @@
+export DOTFILES_HOME="/home/nyxz/dotfiles"
 
-if [ -f ~/dotfiles/aliases.sh ]; then
-    . ~/dotfiles/aliases.sh
+if [ -f "$DOTFILES_HOME/functions.sh" ]; then
+    . "$DOTFILES_HOME/functions.sh"
 fi
 
-if [ -f ~/dotfiles/functions.sh ]; then
-    . ~/dotfiles/functions.sh
+if [ -f "$DOTFILES_HOME/aliases.sh" ]; then
+  . "$DOTFILES_HOME/aliases.sh"
 fi
 
-if [ -f ~/dotfiles/majio-functions.sh ]; then
-    . ~/dotfiles/majio-functions.sh
-fi
-
-if [ -f ~/dotfiles/flabs-functions.sh ]; then
-    . ~/dotfiles/flabs-functions.sh
+if [ -f "$DOTFILES_HOME/projects/import.sh" ]; then
+  . "$DOTFILES_HOME/projects/import.sh"
 fi
 
