@@ -28,3 +28,6 @@ alias sizeme_big='du -h --max-depth=1 --threshold=+10m'
 alias heap_dump='jmap -dump:format=b,file=/home/nyxz/tmp/heap.`date +%Y-%m-%d.%H-%M-%S`.dump'
 alias eclipse_clean="find . -name '.settings' -o -name '.project' -o -name '.classpath' -o -name 'target' | xargs rm -rf ;"
 
+alias ok='paplay ~/Dropbox/sounds/success.wav'
+alias nok='paplay ~/Dropbox/sounds/fail.wav'
+
