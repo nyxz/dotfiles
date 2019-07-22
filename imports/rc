@@ -1,3 +1,4 @@
+export PATH=~/.local/bin:$PATH
 export DOTFILES_HOME="/home/nyxz/dotfiles"
 
 if [ -f "$DOTFILES_HOME/functions.sh" ]; then
