@@ -31,3 +31,5 @@ alias eclipse_clean="find . -name '.settings' -o -name '.project' -o -name '.cla
 alias ok='notify-send "Operation succeeded!" && paplay ~/Dropbox/sounds/success.wav'
 alias nok='notify-send "Operation failed." && paplay ~/Dropbox/sounds/fail.wav'
 
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
