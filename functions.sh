@@ -1,7 +1,7 @@
 
 function testSitePrefix {
   # Usage: testSitePrefix placementfeed.co.uk
-  prefixes=( '' 'www.' 'http://www.' 'http://' 'https://www.' 'https://' )
+  local prefixes=( '' 'www.' 'http://www.' 'http://' 'https://www.' 'https://' )
   for prefix in "${prefixes[@]}"
   do
     fullUrl=$prefix"$1"
@@ -17,7 +17,7 @@ function sha2base {
 }
 
 function gitRevertDeletedFile {
-  file=$1
+  local file=$1
   git checkout $(git rev-list -n 1 HEAD -- "$file")^ -- "$file"
 }
 
@@ -32,5 +32,10 @@ function backup {
 
 function goto {
   cd $1 && git status
+}
+
+function awsListImageVersion {
+  local repository_name="$1"
+  aws ecr list-images --repository-name "$repository_name" | jq -r '.imageIds[] | .imageTag' | sort -r
 }
 
