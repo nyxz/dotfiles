@@ -34,7 +34,7 @@ function goto {
   cd $1 && git status
 }
 
-function awsListImageVersion {
+function awsListImageVersions {
   local repository_name="$1"
   aws ecr list-images --repository-name "$repository_name" | jq -r '.imageIds[] | .imageTag' | sort -r
 }
