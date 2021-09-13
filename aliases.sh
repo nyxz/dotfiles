@@ -33,3 +33,4 @@ alias nok='notify-send "Operation failed." && paplay ~/Dropbox/sounds/fail.wav'
 
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
+alias vim="vimx"
