@@ -1,8 +1,11 @@
 export PATH=~/.local/bin:$PATH
 export DOTFILES_HOME="/home/nyxz/dotfiles"
-export VISUAL=vim
+export VISUAL=vimx
 export EDITOR="$VISUAL"
-export GIT_EDITOR=vim
+export GIT_EDITOR=vimx
+
+# Move above "source $ZSH/oh-my-zsh.sh"
+export ZSH_TMUX_AUTOSTART=true
 
 if [ -f "$DOTFILES_HOME/functions.sh" ]; then
     . "$DOTFILES_HOME/functions.sh"
