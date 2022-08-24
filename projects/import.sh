@@ -1,4 +1,4 @@
-projects=( 'coursera' 'flabs' 'majio' 'hyperaspect' )
+projects=( 'coursera' 'flabs' 'majio' 'hyperaspect' 'misc' )
 
 for project in $projects; do
   PROJ_HOME="$DOTFILES_HOME/projects/$project"
