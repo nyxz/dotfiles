@@ -4,6 +4,11 @@ export VISUAL=vimx
 export EDITOR="$VISUAL"
 export GIT_EDITOR=vimx
 
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$HOME/tools/webstorm/WebStorm-2024.3.2.1/WebStorm-243.23654.157/bin
+
 # Move above "source $ZSH/oh-my-zsh.sh"
 export ZSH_TMUX_AUTOSTART=true
 
